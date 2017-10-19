@@ -4,7 +4,7 @@
   <li *ngFor = "let hero of heroes" 
       (click)="onSelect(hero)" 
       [class.selected] = "hero===selectedHero">
-      <span class="badge"  >{{hero.ID}}</span> {{hero.name}}
+      <span class="badge">{{hero.ID}}</span> {{hero.name}}
   </li>
 </ul>
 <app-hero-detail [hero]="selectedHero"></app-hero-detail>
