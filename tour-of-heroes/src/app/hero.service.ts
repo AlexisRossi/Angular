@@ -9,11 +9,12 @@ import 'rxjs/add/operator/toPromise'
 export class HeroService{
     private heroesUrl = 'api/heroes';
 
-    constructor (private _http : Http) {}
+    constructor (private _http : Http) { }
+
     getHeroes():Promise<Hero[]>{
         return this._http.get(this.heroesUrl)
         .toPromise()
-        .then(response => response.json().data as Hero[])
+        .then(response => response.json() as Hero[])
         .catch(this.HandleError);
     }
 
@@ -22,12 +23,12 @@ export class HeroService{
         return Promise.reject(error.message || error);
     }
     
-    getHeroesSlowly(): Promise<Hero[]> {    
-        return new Promise(resolve => {
-          // Simulate server latency with 2 second delay
-          setTimeout(() => resolve(this.getHeroes()), 2000);
-        });
-      }
+    // getHeroesSlowly(): Promise<Hero[]> {    
+    //     return new Promise(resolve => {
+    //       // Simulate server latency with 2 second delay
+    //       setTimeout(() => resolve(this.getHeroes()), 2000);
+    //     });
+    //   }
       getHeroe(id:number){
           return this.getHeroes().then(heroes => heroes.find(hero => hero.ID === id));
       }
